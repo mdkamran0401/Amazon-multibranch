@@ -1,1 +1,29 @@
-// Added feature 4
+pipeline {
+    agent { label 'Node1' }
+
+    stages {
+        stage('COMPILE STAGE') {
+            steps {
+                dir('Amazon') {
+                    sh 'mvn compile'
+                }
+            }
+        }
+
+        stage('TEST STAGE') {
+            steps {
+                dir('Amazon') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('BUILD AND INSTALL STAGE') {
+            steps {
+                dir('Amazon') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+}
