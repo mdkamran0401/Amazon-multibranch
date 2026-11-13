@@ -1,0 +1,29 @@
+pipeline {
+    agent { label 'Node1' }
+
+    stages {
+        stage('COMPILE SKY') {
+            steps {
+                dir('SKY') {
+                    sh 'mvn compile'
+                }
+            }
+        }
+
+        stage('TEST SKY') {
+            steps {
+                dir('SKY') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('BUILD AND INSTALL SKY') {
+            steps {
+                dir('SKY') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+}
