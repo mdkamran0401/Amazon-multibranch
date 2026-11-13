@@ -1,0 +1,29 @@
+pipeline {
+    agent { label 'Node1' }
+
+    stages {
+        stage('COMPILE SPRINGCORE') {
+            steps {
+                dir('SpringCore') {
+                    sh 'mvn compile'
+                }
+            }
+        }
+
+        stage('TEST SPRINGCORE') {
+            steps {
+                dir('SpringCore') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('BUILD AND INSTALL SPRINGCORE') {
+            steps {
+                dir('SpringCore') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+}
