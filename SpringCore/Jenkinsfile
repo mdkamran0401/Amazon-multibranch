@@ -4,19 +4,25 @@ pipeline {
     stages {
         stage('COMPILE SPRINGCORE') {
             steps {
-                sh 'mvn compile'
+                dir('SpringCore') {
+                    sh 'mvn compile'
+                }
             }
         }
 
         stage('TEST SPRINGCORE') {
             steps {
-                sh 'mvn test'
+                dir('SpringCore') {
+                    sh 'mvn test'
+                }
             }
         }
 
         stage('BUILD AND INSTALL SPRINGCORE') {
             steps {
-                sh 'mvn clean install'
+                dir('SpringCore') {
+                    sh 'mvn clean install'
+                }
             }
         }
     }
